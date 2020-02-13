@@ -6,14 +6,24 @@
   "scripts": {
     "build": "npm run site.structure && npm run docs && stencil build --prerender --next",
     "build.ci": "npm run site.structure && npm run docs && stencil build --prerender --max-workers=1 --ci --next",
+    "dev": "npm run site.structure && npm run docs && npm run start",
     "docs": "tsc --p ./scripts && node ./scripts/markdown-to-html && node ./scripts/blog-list",
     "deploy.next": "firebase deploy --project next --token=$FIREBASE_DEPLOY_TOKEN",
     "deploy.prod": "firebase deploy --project production --token=$FIREBASE_DEPLOY_TOKEN",
+    "markdown.sync": "nodemon --exec \"npm run site.structure && npm run docs\"",
     "prerender": "stencil build --prerender",
     "test": "echo Good",
     "prerender.dev": "stencil build --dev --prerender",
     "site.structure": "tsc --p ./scripts && node ./scripts/site-structure",
     "start": "stencil build --dev --watch --serve --next"
+  },
+  "nodemonConfig": {
+    "watch": [
+      "src/docs/*",
+      "src/blog/*"
+    ],
+    "ext": "md",
+    "delay": "1500"
   },
   "devDependencies": {
     "@stencil/core": "1.9.0-13",
