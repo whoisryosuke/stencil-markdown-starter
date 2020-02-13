@@ -1,33 +1,30 @@
-import '@stencil/router';
-import { LocationSegments, RouterHistory } from '@stencil/router';
-import { Component, Element, Listen, State, h } from '@stencil/core';
-import SiteProviderConsumer, { SiteState } from '../../global/site-provider-consumer';
+import "@stencil/router";
+import { LocationSegments, RouterHistory } from "@stencil/router";
+import { Component, Element, Listen, State, h } from "@stencil/core";
+import SiteProviderConsumer, {
+  SiteState
+} from "../../global/site-provider-consumer";
 
 @Component({
-  tag: 'app-root',
-  styleUrl: 'app-root.css'
+  tag: "app-root",
+  styleUrl: "app-root.css"
 })
 export class AppRoot {
   history?: RouterHistory;
-  elements = [
-    'site-header',
-    'site-menu',
-    'app-burger',
-    'main'
-  ];
+  elements = ["site-header", "site-menu", "app-burger", "main"];
 
   @Element() el!: HTMLElement;
 
   @State() isLeftSidebarIn: boolean = false;
 
-  @Listen('resize', { target: 'window' })
+  @Listen("resize", { target: "window" })
   handleResize() {
     requestAnimationFrame(() => {
       if (window.innerWidth > 768 && this.isLeftSidebarIn) {
         this.isLeftSidebarIn = false;
-        document.body.classList.remove('no-scroll');
-        this.elements.forEach((el) => {
-          this.el.querySelector(el)!.classList.remove('left-sidebar-in');
+        document.body.classList.remove("no-scroll");
+        this.elements.forEach(el => {
+          this.el.querySelector(el)!.classList.remove("left-sidebar-in");
         });
       }
     });
@@ -38,14 +35,16 @@ export class AppRoot {
       this.history = history;
       this.history.listen((location: LocationSegments) => {
         // Google Analytics
-        (window as any).gtag('config', 'UA-44023830-34', { 'page_path': location.pathname + location.search });
+        (window as any).gtag("config", "UA-44023830-34", {
+          page_path: location.pathname + location.search
+        });
 
         // Hubspot
         // (window as any)._hsq.push(['setPath', location.pathname + location.search ]);
         // (window as any)._hsq.push(['trackPageView']);
       });
     }
-  }
+  };
 
   componentDidLoad() {
     this.isLeftSidebarIn = false;
@@ -61,20 +60,20 @@ export class AppRoot {
 
     if (this.isLeftSidebarIn) {
       this.isLeftSidebarIn = false;
-      document.body.classList.remove('no-scroll');
+      document.body.classList.remove("no-scroll");
       elements.forEach(el => {
-        el.classList.remove('left-sidebar-in');
-        el.classList.add('left-sidebar-out');
+        el.classList.remove("left-sidebar-in");
+        el.classList.add("left-sidebar-out");
       });
     } else {
       this.isLeftSidebarIn = true;
-      document.body.classList.add('no-scroll');
+      document.body.classList.add("no-scroll");
       elements.forEach(el => {
-        el.classList.add('left-sidebar-in');
-        el.classList.remove('left-sidebar-out');
+        el.classList.add("left-sidebar-in");
+        el.classList.remove("left-sidebar-out");
       });
     }
-  }
+  };
 
   render() {
     const siteState: SiteState = {
@@ -87,42 +86,68 @@ export class AppRoot {
         <site-header />
         <main>
           <stencil-router scrollTopOffset={0}>
-            <stencil-route style={{ display: 'none' }} routeRender={this.setHistory}/>
+            <stencil-route
+              style={{ display: "none" }}
+              routeRender={this.setHistory}
+            />
             <stencil-route-switch>
               <stencil-route url="/" component="landing-page" exact={true} />
-              <stencil-route url="/docs/:pageName" routeRender={({ match }) => (
-                <doc-component page={match!.url}></doc-component>
-              )}/>
+              <stencil-route
+                url="/docs/:pageName"
+                routeRender={({ match }) => (
+                  <doc-component page={match!.url}></doc-component>
+                )}
+              />
 
-              <stencil-route url="/blog" component="blog-list" exact={true}/>
+              <stencil-route url="/blog" component="blog-list" exact={true} />
 
-              <stencil-route url="/blog/:pageName" routeRender={({ match }) => (
-                <blog-component page={match!.url}></blog-component>
-              )}/>
+              <stencil-route
+                url="/blog/:pageName"
+                routeRender={({ match }) => (
+                  <blog-component page={match!.url}></blog-component>
+                )}
+              />
 
-              <stencil-route url="/pwa" component="pwas-page" />
               <stencil-route url="/resources" component="resources-page" />
-              <stencil-route component='notfound-page'></stencil-route>
+              <stencil-route component="notfound-page"></stencil-route>
             </stencil-route-switch>
           </stencil-router>
           <footer>
             <div class="container">
               <div class="footer-col">
-                <app-icon name="logo"/>
-                <p>© 2019 StencilJS.  Released under MIT License</p>
+                <app-icon name="logo" />
+                <p>© 2019 StencilJS. Released under MIT License</p>
                 <ul class="external-links list--unstyled">
                   <li>
-                    <a rel="noopener" class="link--external" target="_blank" href="https://twitter.com/stenciljs" aria-label="Twitter">
+                    <a
+                      rel="noopener"
+                      class="link--external"
+                      target="_blank"
+                      href="https://twitter.com/stenciljs"
+                      aria-label="Twitter"
+                    >
                       <app-icon name="twitter"></app-icon>
                     </a>
                   </li>
                   <li>
-                    <a rel="noopener" class="link--external" target="_blank" href="https://stencil-worldwide.herokuapp.com" aria-label="Slack">
+                    <a
+                      rel="noopener"
+                      class="link--external"
+                      target="_blank"
+                      href="https://stencil-worldwide.herokuapp.com"
+                      aria-label="Slack"
+                    >
                       <app-icon name="slack"></app-icon>
                     </a>
                   </li>
                   <li>
-                    <a rel="noopener" class="link--external" target="_blank" href="https://github.com/ionic-team/stencil" aria-label="Github">
+                    <a
+                      rel="noopener"
+                      class="link--external"
+                      target="_blank"
+                      href="https://github.com/ionic-team/stencil"
+                      aria-label="Github"
+                    >
                       <app-icon name="github"></app-icon>
                     </a>
                   </li>

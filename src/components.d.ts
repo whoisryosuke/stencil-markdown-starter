@@ -62,7 +62,6 @@ export namespace Components {
     'uniforms': any;
     'vert': string;
   }
-  interface PwasPage {}
   interface ResourcesPage {}
   interface SiteHeader {}
   interface SiteMenu {
@@ -183,12 +182,6 @@ declare global {
     new (): HTMLProGlshaderElement;
   };
 
-  interface HTMLPwasPageElement extends Components.PwasPage, HTMLStencilElement {}
-  var HTMLPwasPageElement: {
-    prototype: HTMLPwasPageElement;
-    new (): HTMLPwasPageElement;
-  };
-
   interface HTMLResourcesPageElement extends Components.ResourcesPage, HTMLStencilElement {}
   var HTMLResourcesPageElement: {
     prototype: HTMLResourcesPageElement;
@@ -231,7 +224,6 @@ declare global {
     'notfound-page': HTMLNotfoundPageElement;
     'pre-footer': HTMLPreFooterElement;
     'pro-glshader': HTMLProGlshaderElement;
-    'pwas-page': HTMLPwasPageElement;
     'resources-page': HTMLResourcesPageElement;
     'site-header': HTMLSiteHeaderElement;
     'site-menu': HTMLSiteMenuElement;
@@ -291,7 +283,6 @@ declare namespace LocalJSX {
     'uniforms'?: any;
     'vert'?: string;
   }
-  interface PwasPage {}
   interface ResourcesPage {}
   interface SiteHeader {}
   interface SiteMenu {
@@ -319,7 +310,6 @@ declare namespace LocalJSX {
     'notfound-page': NotfoundPage;
     'pre-footer': PreFooter;
     'pro-glshader': ProGlshader;
-    'pwas-page': PwasPage;
     'resources-page': ResourcesPage;
     'site-header': SiteHeader;
     'site-menu': SiteMenu;
@@ -351,7 +341,6 @@ declare module "@stencil/core" {
       'notfound-page': LocalJSX.NotfoundPage & JSXBase.HTMLAttributes<HTMLNotfoundPageElement>;
       'pre-footer': LocalJSX.PreFooter & JSXBase.HTMLAttributes<HTMLPreFooterElement>;
       'pro-glshader': LocalJSX.ProGlshader & JSXBase.HTMLAttributes<HTMLProGlshaderElement>;
-      'pwas-page': LocalJSX.PwasPage & JSXBase.HTMLAttributes<HTMLPwasPageElement>;
       'resources-page': LocalJSX.ResourcesPage & JSXBase.HTMLAttributes<HTMLResourcesPageElement>;
       'site-header': LocalJSX.SiteHeader & JSXBase.HTMLAttributes<HTMLSiteHeaderElement>;
       'site-menu': LocalJSX.SiteMenu & JSXBase.HTMLAttributes<HTMLSiteMenuElement>;
