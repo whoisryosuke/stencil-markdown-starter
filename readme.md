@@ -43,6 +43,10 @@ contributors:
 ---
 ```
 
+The URL of the page is determined by the URL property in the Markdown frontmatter. You can organize or name the Markdown files however you'd like, since nesting them inside folders won't effect the URL.
+
+To add links to documentation, see the section "Adding pages to docs sidebar".
+
 ## "Hot reloading" Markdown Content
 
 Run `npm run markdown.sync` in a separate Terminal next to your `npm run start` script.
@@ -50,10 +54,6 @@ Run `npm run markdown.sync` in a separate Terminal next to your `npm run start` 
 Since the Markdown parsing occurs using a Node script (`npm run docs`) outside of the Stencil build process, we have to re-run the script each time we make a change to Markdown files. Thanks to nodemon, it checks for any changes that occur in Markdown files in your docs and blog folders, and restarts the Markdown parsing.
 
 It's not exactly hot reloading, since Stencil's build process will run - but won't refresh the page with changes, but it's better than manually running the script.
-
-The URL of the page is determined by the URL property in the Markdown frontmatter. You can organize or name the Markdown files however you'd like, since nesting them inside folders won't effect the URL.
-
-To add links to documentation, see the section "Adding pages to docs sidebar".
 
 ## Adding static pages
 
