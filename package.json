@@ -43,7 +43,7 @@
     "marked": "^0.7.0",
     "node-fetch": "^2.3.0",
     "nodemon": "^2.0.2",
-    "prismjs": "1.17.1",
+    "prismjs": "1.27.0",
     "typescript": "^3.7.5",
     "workbox-build": "4.3.1"
   },
